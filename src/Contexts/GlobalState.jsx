@@ -2,10 +2,20 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { BASE_URL } from "../Constants";
 import { GlobalContext } from "./GlobalContext";
+import * as Coordinator from "../Router/Coordinator"
 
 
 function GlobalState(props) {
+    const [page, setPage] = useState('home')
     const [pokemonDetails, setPokemonDetails] = useState([])
+    const [pokeCards, setPokeCards] = useState([])
+    const [intoPokedex, setIntoPokedex] = useState([])
+
+    const {
+        goToHomePage,
+        goToPokedexPage,
+        goToDetailsPage
+    } = Coordinator
 
     const fetchPokemonUrls = async () => {
         try {
@@ -35,23 +45,51 @@ function GlobalState(props) {
         try {
             const promises = await fetchPokemonUrls()
             const result = await Promise.all(promises.map(url => fetchPokemonData(url)))
-            
+
             setPokemonDetails(result)
         } catch (err) {
             console.log(`fetchPokemon error: ${err.response}`);
         }
     }
 
-    useEffect(()=> {
-        console.log(pokemonDetails)
-    }, [pokemonDetails])
+    const updatePokeCards = (update) => {
+        setPokeCards(update)
+    }
+    
+    const releasePokemon = (pokemon) => {
+        console.log("LIBERTEI!");
+    }
+    
+    useEffect(() => {
+        localStorage.setItem("pokemon", JSON.stringify(intoPokedex))
+        console.log('intoPokedex: ', intoPokedex);
+    }, [intoPokedex])
+
+    useEffect(() => {
+        console.log('pokeCards: ', pokeCards);
+    }, [pokeCards])
+
+    // useEffect(() => {
+    //     console.log(pokemonDetails)
+    // }, [pokemonDetails])
 
     useEffect(() => {
         fetchPokemon()
     }, [])
 
     const context = {
-        pokemonDetails: pokemonDetails
+        page: page,
+        setPage: setPage,
+        pokemonDetails: pokemonDetails,
+        pokeCards: pokeCards,
+        intoPokedex: intoPokedex,
+        setIntoPokedex: setIntoPokedex,
+        updatePokeCards: updatePokeCards,
+        fetchPokemon: fetchPokemon,
+        releasePokemon: releasePokemon,
+        goToHomePage: goToHomePage,
+        goToPokedexPage: goToPokedexPage,
+        goToDetailsPage: goToDetailsPage
     };
 
     return (
@@ -60,6 +98,5 @@ function GlobalState(props) {
         </GlobalContext.Provider>
     )
 }
-
 
 export default GlobalState;
