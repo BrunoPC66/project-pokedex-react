@@ -117,31 +117,24 @@ const Card = () => {
         }
     ]
 
-    const catchPokemon = (pokemon) => {
-        const backpack = pokeCards.find(poke => poke.key == pokemon.id)
-        if (intoPokedex.length < 1) {
-            setIntoPokedex([backpack])
-            console.log('backpack: ', backpack);
-        } else {
-            setIntoPokedex([...intoPokedex, backpack])
-        }
-    }
-    const updatedCards = pokemonDetails.map((poke) => {
-        const sprites = poke.sprites.other
-        const officialArtwork = Object.values(sprites)[2].front_default
-        const pokeTypes = poke.types.map(type => type.type.name)
-        const typesColor = typeBackgroundColor.find(typeColor => typeColor.type === poke.type)
-        const cardBackgroundColor = pokeTypes.map(type => typeBackgroundColor.find(typeColor => typeColor.type === type).cardColor)[0]
+    let button
 
+    const updatedCards = pokemonDetails.map((poke) => {
+        const sprites = poke.sprites.other;
+        const officialArtwork = Object.values(sprites)[2].front_default;
+        const pokeTypes = poke.types.map(type => type.type.name);
+        const typesColor = pokeTypes.map(type => typeBackgroundColor.find(typeColor => typeColor.type === type).color);
+        const cardBackgroundColor = pokeTypes.map(type => typeBackgroundColor.find(typeColor => typeColor.type === type).cardColor)[0];
+        
+        
         const pokemonObj = {
             name: poke.name,
             id: poke.id,
-            sprite: officialArtwork || '',
-            type: {...pokeTypes},
+            sprite: officialArtwork,
+            type: pokeTypes,
             typeColor: typesColor,
-            backgroundColor: cardBackgroundColor,
+            backgroundColor: cardBackgroundColor
         }
-
         return pokemonObj
     })
 
@@ -151,7 +144,7 @@ const Card = () => {
                 if (page === "home") {
                     return (
                         <button className="card-button"
-                            id="card-catch" onClick={() => catchPokemon(poke)}>Capturar!</button>
+                            id="card-catch" onClick={() => button(poke)}>Capturar!</button>
                     )
                 } else if (page === "pokedex") {
                     return (
@@ -160,36 +153,64 @@ const Card = () => {
                 }
             }
 
-            return (
-                <div key={poke.id} className="card-container">
-                    <section className="card-poke-img">
-                        <img src={poke.sprite} alt={poke.name} />
-                    </section>
-                    <div className='card-block' style={poke.backgroundColor}>
-                        <section className='card-id-name'>
-                            <p className="poke-id">#{poke.id}</p>
-                            <p className="poke-name">{poke.name}</p>
+            const card = {
+                id: poke.id,
+                content: (
+                    <div key={poke.id} className="card-container">
+                        <section className="card-poke-img">
+                            <img src={poke.sprite} alt={poke.name} />
                         </section>
-                        <section className='types'>
-                            <span className='card-type' style={poke.typeColor}>
-                                {/* <img src={require(`../../assets/pokemon-types-icons/${poke.type}.png`)} alt={poke.type} className="type-img" /> */}
-                                {/* <p className="type-name">{poke.type}</p> */}
-                            </span>
-                        </section>
-                        <section className='detail-page-button-container'>
-                            <button className='detail-page-button' onClick={() => onDetailsPageHandler(poke.name)}>Detalhes</button>
-                        </section>
-                        <section className='catch-release'>
-                            {cardButton(poke)}
-                        </section>
+                        <div className='card-block' style={{ backgroundColor: poke.backgroundColor }}>
+                            <section className='card-id-name'>
+                                <p className="poke-id">#{poke.id}</p>
+                                <p className="poke-name">{poke.name}</p>
+                            </section>
+                            <section className='types'>
+                                {
+                                    poke.type.map((type, index) => {
+                                        return (
+                                            <span key={index} className='card-type' style={{ backgroundColor: poke.typeColor[index] }}>
+                                                <img src={require(`../../assets/pokemon-types-icons/${type}.png`)} alt={type} className="type-img" />
+                                                <p className="type-name">{type}</p>
+                                            </span>
+                                        )
+                                    })
+                                }
+                            </section>
+                            <section className='detail-page-button-container'>
+                                <button className='detail-page-button' onClick={() => onDetailsPageHandler(poke.name)}>Detalhes</button>
+                            </section>
+                            <section className='catch-release'>
+                                {cardButton()}
+                            </section>
+                        </div>
                     </div>
-                </div>
-            )
-        });
+                )
+            }
+            return card
+        })
 
-        updatePokeCards(allCards)
+        updatePokeCards(allCards.map(card => card.content))
 
-    }, [page, pokemonDetails, intoPokedex])
+        const catchPokemon = (pokemon) => {
+            const backpack = allCards.find(poke => poke.id === pokemon.id)
+            const existIntoPokedex = intoPokedex.find(poke => +poke.key === backpack.id)
+    
+            if(backpack) {
+                if (existIntoPokedex) {
+                    return intoPokedex
+                } else {
+                    setIntoPokedex([...intoPokedex, backpack.content])
+                }
+            }
+            console.log('backpack: ', backpack);
+        }
+    
+        button = catchPokemon
+
+        console.log(page)
+
+    }, [page, pokemonDetails, intoPokedex])    
 
 
     return (

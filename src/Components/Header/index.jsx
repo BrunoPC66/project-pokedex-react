@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext} from "react";
 import { GlobalContext } from "../../Contexts/GlobalContext";
 import { useNavigate } from "react-router-dom";
 import HeaderStyle from "./styled";
@@ -36,8 +36,7 @@ const Header = () => {
                             <button className="to-pokedex-page" onClick={onPokedexPageHandler}>Pokédex</button>
                         </div>
                     </HeaderStyle>
-                )
-                break;
+                );
 
             case 'pokedex':
                 return (
@@ -48,8 +47,7 @@ const Header = () => {
                             <p></p>
                         </div>
                     </HeaderStyle>
-                )
-                break;
+                );
 
             case 'details':
                 return (
@@ -60,8 +58,7 @@ const Header = () => {
                             <button className="header-release" onClick={releasePokemon}>Libertar</button>
                         </div>
                     </HeaderStyle>
-                )
-                break;
+                );
 
             default:
 
