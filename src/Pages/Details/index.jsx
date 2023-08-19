@@ -13,9 +13,7 @@ function DetailsPage() {
 
   const {
     setPage,
-    setThisPokeName,
-    pokemonDetails,
-    setPokemonDetails
+    setThisPokeName
   } = context
 
   const renderThisPage = async () => {

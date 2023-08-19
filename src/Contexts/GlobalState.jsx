@@ -10,18 +10,8 @@ function GlobalState(props) {
         localStorage.setItem('pokedex', JSON.stringify(intoPokedex))
     };
 
-    const setItemDetails = () => {
-        localStorage.setItem('details', JSON.stringify(pokemonDetails))
-    };
-
     const pokedexStorage = () => {
         const storage = JSON.parse(localStorage.getItem('pokedex'))
-
-        return storage || []
-    };
-
-    const detailsStorage = () => {
-        const storage = JSON.parse(localStorage.getItem('details'))
 
         return storage || []
     };
@@ -30,7 +20,6 @@ function GlobalState(props) {
     const [pokemonList, setPokemonList] = useState([]);
     const [intoPokedex, setIntoPokedex] = useState(pokedexStorage);
     const [thisPokeName, setThisPokeName] = useState('')
-    const [pokemonDetails, setPokemonDetails] = useState(detailsStorage);
 
     const {
         goToHomePage,
@@ -40,8 +29,7 @@ function GlobalState(props) {
 
     useEffect(() => {
         setItemPokedex()
-        setItemDetails()
-    }, [intoPokedex, pokemonDetails, page])
+    }, [intoPokedex, page])
 
     useEffect(() => {
         fetchPokemon(setPokemonList)
@@ -54,8 +42,6 @@ function GlobalState(props) {
         intoPokedex: intoPokedex,
         thisPokeName: thisPokeName,
         setThisPokeName: setThisPokeName,
-        pokemonDetails: pokemonDetails,
-        setPokemonDetails: setPokemonDetails,
         setIntoPokedex: setIntoPokedex,
         fetchPokemon: fetchPokemon,
         goToHomePage: goToHomePage,

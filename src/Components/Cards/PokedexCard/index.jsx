@@ -19,7 +19,6 @@ const PokedexCard = () => {
     const onDetailsPageHandler = async (pokemon) => {
         await setThisPokeName(pokemon.name)
         await goToDetailsPage(navigate, pokemon.name)
-        console.log(thisPokeName);
     }
 
     const releaseButton = (pokemon) => {

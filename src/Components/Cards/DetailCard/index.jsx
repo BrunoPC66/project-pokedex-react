@@ -11,12 +11,10 @@ const DetailCard = () => {
         page,
         pokemonList,
         thisPokeName,
-        pokemonDetails,
-        setPokemonDetails
     } = context
 
     const existPoke = [pokemonList.find(thisPoke => thisPoke.name === thisPokeName)]
-    console.log('exist', existPoke);
+
     const updatedCards = existPoke.map(poke => {
         if (poke) {
             const sprites = poke.sprites.other;
@@ -59,14 +57,11 @@ const DetailCard = () => {
         }
     })
 
-    // setPokemonDetails(updatedCards)
-
     if (updatedCards[0]) {
         return (
             <DetailCardStyle>
                 {updatedCards.map(poke => {
                     const pokemonDetailPath = `/details/${poke.name}`
-                    console.log(poke.totalBaseStats)
                     if (page === pokemonDetailPath) {
                         return (
                             <div className="card-container">
