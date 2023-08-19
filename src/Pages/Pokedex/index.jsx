@@ -2,23 +2,25 @@ import { useContext } from "react";
 import { GlobalContext } from "../../Contexts/GlobalContext";
 import Header from "../../Components/Header";
 import PokedexPageStyle from "./styled";
-import CardStyle from "../../Components/Card/styled";
+import { useLocation } from "react-router-dom";
+import PokedexCard from "../../Components/Cards/PokedexCard";
 
 function PokedexPage() {
   const context = useContext(GlobalContext)
+  const pathname = useLocation().pathname
 
   const {
-    intoPokedex
+    setPage
   } = context
+
+  setPage(pathname)
 
   return (
     <div>
       <Header />
       <PokedexPageStyle>
         <h1>Pokedex</h1>
-        <CardStyle>
-          {intoPokedex}
-        </CardStyle>
+        <PokedexCard />
       </PokedexPageStyle>
     </div>
   );

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import pokeball from "../../assets/pokeball-icon.png"
+import pokeball from "../../../assets/pokeball-icon.png"
 
 const CardStyle = styled.div`
     display: flex;
@@ -62,7 +62,7 @@ const CardStyle = styled.div`
 .types {
     display: flex;
     flex-wrap: wrap;
-    grid-area: 7 / 2 / 9 / 11;
+    grid-area: 7 / 2 / 9 / 13;
 }
 
 .card-type {
@@ -78,7 +78,7 @@ const CardStyle = styled.div`
 }
 
 .type-name {
-
+    font-weight: 500;
 }
 
 .detail-page-button-container {
@@ -101,12 +101,15 @@ const CardStyle = styled.div`
 }
 
 #card-catch {
-    background-color: white;
+    background-color: mistyrose;
     color: black;
 }
 
 #card-release {
     background-color: indianred;
+    border-radius: 8px;
+    font-weight: 500;
+    color: mistyrose;
 }
 `
 
