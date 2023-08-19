@@ -1,5 +1,3 @@
-# Obs: Projeto quase finalizado...
-
 # **Projeto React e API's**
 O Projeto React e APIs é um site de pokémons que possui três páginas: Home, Pokedex e Detalhes. Esse projeto traz a possibilidade de capturar um dos 30 pokémons disponíveis no projeto, soltar os que estiver na pokédex e acessar os detalhes de cada um.
 
@@ -42,3 +40,5 @@ Os conteúdos principais  a serem estudados são:
 	- [ ] Header deve ter um botão para adicionar ou remover da Pokedex e outro para voltar a página home.
 
 ## O link do deploy: https://project-pokedex-by-pokeapi.surge.sh/
+
+Sinta-se livre para dar suas opiniões ou criticas construtivas.
