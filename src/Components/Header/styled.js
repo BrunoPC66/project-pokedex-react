@@ -96,6 +96,17 @@ height: 25vh;
     border-radius: 0px 0px 100px 100px;
 }
 
+.header-catch {
+    order: 3;
+    padding: 6px 15px 6px 15px;
+    text-align: center;
+    background-color: lightblue;
+    border: 1px solid black;
+    border-radius: 8px;
+    font-weight: 500;
+    color: black;
+}
+
 .header-release {
     order: 3;
     padding: 6px 15px 6px 15px;

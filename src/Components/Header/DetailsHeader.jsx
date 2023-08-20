@@ -1,15 +1,19 @@
 import { useContext } from "react";
 import { GlobalContext } from "../../Contexts/GlobalContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const DetailsHeader = () => {
+const DetailsHeader = (props) => {
     const context = useContext(GlobalContext)
     const navigate = useNavigate()
 
+    const params = useParams().pokemon
+
     const {
-        releasePokemon,
+        pokemonObject,
         goToHomePage,
-        goToPokedexPage
+        goToPokedexPage,
+        catchButton,
+        releaseButton
     } = context
 
     const onHomePageHandler = async () => {
@@ -20,6 +24,21 @@ const DetailsHeader = () => {
         await goToPokedexPage(navigate)
     }
 
+    const catchFromHeader = () => {
+        const getPoke = pokemonObject.find(poke => poke.name === params)
+        catchButton(getPoke)
+    }
+
+    const releaseFromHeader = () => {
+        const getPoke = pokemonObject.find(poke => poke.name === params)
+        console.log(params);
+        return getPoke ?
+        releaseButton(getPoke)
+        :
+        pokemonObject
+    }
+    console.log(pokemonObject);
+
     return (
         <div className="header-container" id="details-header">
             <a href="/" className="pokemon-logo" ><img src={require("../../assets/pokemon-logo.png")} alt="Pokémon™" className="pokemon-logo" /></a>
@@ -29,7 +48,8 @@ const DetailsHeader = () => {
                 <span className="dot-white"></span>
                 <button className="to-pokedex-page" onClick={onPokedexPageHandler}>Pokédex</button>
             </section>
-            <button className="header-release" onClick={releasePokemon}>Libertar</button>
+            <button className="header-catch" onClick={catchFromHeader}>Capturar!</button>
+            <button className="header-release" onClick={releaseFromHeader}>Libertar</button>
         </div>
     )
 }

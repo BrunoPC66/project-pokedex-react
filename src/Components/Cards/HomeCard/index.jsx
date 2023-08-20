@@ -1,32 +1,25 @@
 import { useContext } from "react"
-import CardStyle from "./styled"
+import HomeCardStyle from "./styled"
 import { useNavigate } from "react-router-dom"
 import { GlobalContext } from "../../../Contexts/GlobalContext"
 import { typeBackgroundColor } from "../types"
+import { useEffect } from "react"
 
 const HomeCard = () => {
     const context = useContext(GlobalContext)
     const navigate = useNavigate()
     const {
         pokemonList,
-        intoPokedex,
-        setIntoPokedex,
+        pokemonObject,
+        setPokemonObject,
         setThisPokeName,
-        goToDetailsPage
+        goToDetailsPage,
+        catchButton
     } = context
 
     const onDetailsPageHandler = async (pokemon) => {
         await setThisPokeName(pokemon.name)
         await goToDetailsPage(navigate, pokemon.name)
-    }
-
-    const catchButton = (pokemon) => {
-        const exist = intoPokedex.find(poke => poke.name === pokemon.name)
-        if (!exist) {
-            setIntoPokedex([...intoPokedex, pokemon])
-        } else {
-            return intoPokedex
-        }
     }
 
     const updatedCards = pokemonList.map((poke) => {
@@ -37,7 +30,7 @@ const HomeCard = () => {
         const cardBackgroundColor = pokeTypes.map(type => typeBackgroundColor.find(typeColor => typeColor.type === type).cardColor)[0];
 
 
-        const pokemonObj = {
+        const object = {
             id: poke.id,
             name: poke.name,
             sprite: officialArtwork,
@@ -45,11 +38,16 @@ const HomeCard = () => {
             typeColor: typesColor,
             backgroundColor: cardBackgroundColor
         }
-        return pokemonObj
+        return object
     })
 
+    pokemonObject[0] ?
+        setPokemonObject(pokemonObject)
+        :
+        setPokemonObject(updatedCards)
+
     return (
-        <CardStyle>
+        <HomeCardStyle>
             {updatedCards.map((poke) => {
                 return (
                     <div key={poke.name} className="card-container">
@@ -82,7 +80,7 @@ const HomeCard = () => {
                     </div>
                 )
             })}
-        </CardStyle>
+        </HomeCardStyle>
     )
 }
 

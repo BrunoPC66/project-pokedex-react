@@ -2,14 +2,18 @@ import { useContext } from "react";
 import { GlobalContext } from "../../Contexts/GlobalContext";
 import Header from "../../Components/Header";
 import HomePageStyle from "./styled";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import HomeCard from "../../Components/Cards/HomeCard";
+import { useEffect } from "react";
 
 function HomePage() {
   const context = useContext(GlobalContext)
   const pathname = useLocation().pathname
+
   const {
-    setPage
+    page,
+    setPage,
+    pokemonList
   } = context
 
   setPage(pathname)

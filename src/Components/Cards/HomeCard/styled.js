@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import pokeball from "../../../assets/pokeball-icon.png"
 
-const CardStyle = styled.div`
+const HomeCardStyle = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -113,4 +113,4 @@ const CardStyle = styled.div`
 }
 `
 
-export default CardStyle;
+export default HomeCardStyle;

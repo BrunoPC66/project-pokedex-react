@@ -10,21 +10,14 @@ const PokedexCard = () => {
 
     const {
         intoPokedex,
-        setIntoPokedex,
         setThisPokeName,
-        thisPokeName,
-        goToDetailsPage
+        goToDetailsPage,
+        releaseButton
     } = context
 
     const onDetailsPageHandler = async (pokemon) => {
         await setThisPokeName(pokemon.name)
         await goToDetailsPage(navigate, pokemon.name)
-    }
-
-    const releaseButton = (pokemon) => {
-        const removePokemon = intoPokedex.filter(poke => poke.name !== pokemon.name)
-
-        setIntoPokedex(removePokemon)
     }
 
     return (

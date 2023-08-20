@@ -4,6 +4,7 @@ import { useContext, useEffect } from "react";
 import { GlobalContext } from "../../Contexts/GlobalContext";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import DetailCard from "../../Components/Cards/DetailCard";
+import HomePage from "../Home";
 
 function DetailsPage() {
   const context = useContext(GlobalContext)
@@ -13,7 +14,7 @@ function DetailsPage() {
 
   const {
     setPage,
-    setThisPokeName
+    setThisPokeName,
   } = context
 
   const renderThisPage = async () => {
@@ -24,10 +25,10 @@ function DetailsPage() {
   useEffect(() => {
     renderThisPage()
   }, [params])
-
+    
   return (
     <div>
-      <Header />
+      <Header params={params} />
       <DetailsPageStyle>
         <h1>Detalhes</h1>
         <DetailCard />

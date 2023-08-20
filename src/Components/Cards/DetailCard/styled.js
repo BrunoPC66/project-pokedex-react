@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import pokeball from "../../../assets/pokeball-icon-full.png"
-import { useContext } from "react";
-import { GlobalContext } from "../../../Contexts/GlobalContext";
 
 const DetailCardStyle = styled.div`
     display: flex;
