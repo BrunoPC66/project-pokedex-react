@@ -11,9 +11,7 @@ function HomePage() {
   const pathname = useLocation().pathname
 
   const {
-    page,
     setPage,
-    pokemonList
   } = context
 
   setPage(pathname)
