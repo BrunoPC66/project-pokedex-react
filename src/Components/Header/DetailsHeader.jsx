@@ -31,7 +31,7 @@ const DetailsHeader = (props) => {
 
     const releaseFromHeader = () => {
         const getPoke = pokemonObject.find(poke => poke.name === params)
-        console.log(params);
+        console.log(params); 
         return getPoke ?
         releaseButton(getPoke)
         :
