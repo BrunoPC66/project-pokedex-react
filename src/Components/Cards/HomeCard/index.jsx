@@ -2,8 +2,7 @@ import { useContext } from "react"
 import HomeCardStyle from "./styled"
 import { useNavigate } from "react-router-dom"
 import { GlobalContext } from "../../../Contexts/GlobalContext"
-import { typeBackgroundColor } from "../types"
-import { useEffect } from "react"
+import { CardLogic } from "../logic"
 
 const HomeCard = () => {
     const context = useContext(GlobalContext)
@@ -22,29 +21,7 @@ const HomeCard = () => {
         await goToDetailsPage(navigate, pokemon.name)
     }
 
-    const updatedCards = pokemonList.map((poke) => {
-        const sprites = poke.sprites.other;
-        const officialArtwork = Object.values(sprites)[2].front_default;
-        const pokeTypes = poke.types.map(type => type.type.name);
-        const typesColor = pokeTypes.map(type => typeBackgroundColor.find(typeColor => typeColor.type === type).color);
-        const cardBackgroundColor = pokeTypes.map(type => typeBackgroundColor.find(typeColor => typeColor.type === type).cardColor)[0];
-
-
-        const object = {
-            id: poke.id,
-            name: poke.name,
-            sprite: officialArtwork,
-            type: pokeTypes,
-            typeColor: typesColor,
-            backgroundColor: cardBackgroundColor
-        }
-        return object
-    })
-
-    pokemonObject[0] ?
-        setPokemonObject(pokemonObject)
-        :
-        setPokemonObject(updatedCards)
+    const updatedCards = CardLogic(pokemonList, pokemonObject, setPokemonObject)
 
     return (
         <HomeCardStyle>
