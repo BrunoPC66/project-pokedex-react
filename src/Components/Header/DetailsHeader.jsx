@@ -9,6 +9,7 @@ const DetailsHeader = (props) => {
     const params = useParams().pokemon
 
     const {
+        intoPokedex,
         pokemonObject,
         goToHomePage,
         goToPokedexPage,
@@ -31,11 +32,11 @@ const DetailsHeader = (props) => {
 
     const releaseFromHeader = () => {
         const getPoke = pokemonObject.find(poke => poke.name === params)
-        console.log(params); 
+        console.log(params);
         return getPoke ?
-        releaseButton(getPoke)
-        :
-        pokemonObject
+            releaseButton(getPoke)
+            :
+            pokemonObject
     }
     console.log(pokemonObject);
 
@@ -48,8 +49,13 @@ const DetailsHeader = (props) => {
                 <span className="dot-white"></span>
                 <button className="to-pokedex-page" onClick={onPokedexPageHandler}>Pokédex</button>
             </section>
-            <button className="header-catch" onClick={catchFromHeader}>Capturar!</button>
-            <button className="header-release" onClick={releaseFromHeader}>Libertar</button>
+            {/* An alternative way to make a ternary if inside the JSX return */}
+            {(
+                intoPokedex.find(poke => poke.name === params) ?
+                    <button className="header-release" onClick={releaseFromHeader}>Libertar</button>
+                    :
+                    <button className="header-catch" onClick={catchFromHeader}>Capturar!</button>
+            )}
         </div>
     )
 }
