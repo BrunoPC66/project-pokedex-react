@@ -9,6 +9,7 @@ const HomeCard = () => {
     const navigate = useNavigate()
     const {
         pokemonList,
+        intoPokedex,
         pokemonObject,
         setPokemonObject,
         setThisPokeName,
@@ -51,7 +52,14 @@ const HomeCard = () => {
                                 <button className='detail-page-button' onClick={() => onDetailsPageHandler(poke)}>Detalhes</button>
                             </section>
                             <section className='catch-release'>
-                                <button className="card-button" id="card-catch" onClick={() => catchButton(poke)}>Capturar!</button>
+                            {/* An alternative way to make a normal if inside the JSX return */}
+                                {(() => {
+                                    if (intoPokedex.find(pokemon => pokemon.name === poke.name)) {
+                                        return <button className="card-button" id="card-catched" onClick={() => catchButton(poke)}>Capturado</button>
+                                    } else {
+                                        return <button className="card-button" id="card-catch" onClick={() => catchButton(poke)}>Capturar!</button>
+                                    }
+                                })()}
                             </section>
                         </div>
                     </div>

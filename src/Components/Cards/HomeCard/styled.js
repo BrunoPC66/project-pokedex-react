@@ -105,6 +105,12 @@ const HomeCardStyle = styled.div`
     color: black;
 }
 
+#card-catched {
+    background-color: gray;
+    color: black;
+    opacity: 0.7;
+}
+
 #card-release {
     background-color: indianred;
     border-radius: 8px;
