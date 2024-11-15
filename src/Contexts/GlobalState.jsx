@@ -48,7 +48,7 @@ function GlobalState(props) {
     }
 
     useEffect(() => {
-        setItemPokedex()
+       setItemPokedex()
     }, [intoPokedex, page])
 
     useEffect(() => {

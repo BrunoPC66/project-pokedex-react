@@ -3,9 +3,8 @@ import { BASE_URL } from "../Constants";
 
 export const fetchPokemonUrls = async () => {
     try {
-        const res = await axios.get(`${BASE_URL}/?limit=34`)
+        const res = await axios.get(`${BASE_URL}/pokemon/?limit=34`)
         const url = res.data.results.map(poke => poke.url)
-
         return url
     }
     catch (err) {

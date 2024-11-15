@@ -42,7 +42,7 @@ const DetailsHeader = (props) => {
 
     return (
         <div className="header-container" id="details-header">
-            <a href="/" className="pokemon-logo" ><img src={require("../../assets/pokemon-logo.png")} alt="Pokémon™" className="pokemon-logo" /></a>
+            <img className="pokemon-logo" src={require("../../assets/pokemon-logo.png")} alt="Pokémon™" onClick={onHomePageHandler}/>
             <section className="go-to">
                 <button className="to-home-page" onClick={onHomePageHandler}>Pokémons</button>
                 <span className="dot-black"></span>
@@ -52,9 +52,9 @@ const DetailsHeader = (props) => {
             {/* An alternative way to make a ternary if inside the JSX return */}
             {(
                 intoPokedex.find(poke => poke.name === params) ?
-                    <button className="header-release" onClick={releaseFromHeader}>Libertar</button>
+                    <button className="header-release" onClick={releaseFromHeader}>Release</button>
                     :
-                    <button className="header-catch" onClick={catchFromHeader}>Capturar!</button>
+                    <button className="header-catch" onClick={catchFromHeader}>Catch!</button>
             )}
         </div>
     )

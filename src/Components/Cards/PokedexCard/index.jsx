@@ -45,10 +45,10 @@ const PokedexCard = () => {
                                 }
                             </section>
                             <section className='detail-page-button-container'>
-                                <button className='detail-page-button' onClick={() => onDetailsPageHandler(poke)}>Detalhes</button>
+                                <button className='detail-page-button' onClick={() => onDetailsPageHandler(poke)}>Details</button>
                             </section>
                             <section className='catch-release'>
-                                <button className="card-button" id="card-release" onClick={() => releaseButton(poke)}>Libertar</button>
+                                <button className="card-button" id="card-release" onClick={() => releaseButton(poke)}>Release</button>
                             </section>
                         </div>
                     </div>

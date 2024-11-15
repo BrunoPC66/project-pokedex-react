@@ -16,11 +16,10 @@ const PokedexHeader = () => {
 
     return (
         <div className="header-container" id="pokedex-header">
-            <a href="/" className="pokemon-logo" ><img src={require("../../assets/pokemon-logo.png")} alt="Pokémon™" /></a>
+            <img className="pokemon-logo" src={require("../../assets/pokemon-logo.png")} alt="Pokémon™" onClick={onHomePageHandler}/>
             <section className="go-to">
-                <button className="to-home-page" onClick={onHomePageHandler}>Todos os Pokémons</button>
+                <button className="to-home-page" onClick={onHomePageHandler}>Pokémons</button>
             </section>
-            <p></p>
         </div>
     )
 }

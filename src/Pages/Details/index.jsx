@@ -2,13 +2,11 @@ import Header from "../../Components/Header";
 import DetailsPageStyle from "./styled";
 import { useContext, useEffect } from "react";
 import { GlobalContext } from "../../Contexts/GlobalContext";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import DetailCard from "../../Components/Cards/DetailCard";
-import HomePage from "../Home";
 
 function DetailsPage() {
   const context = useContext(GlobalContext)
-  const navigate = useNavigate()
   const pathname = useLocation().pathname
   const params = useParams().pokemon
 
@@ -30,7 +28,7 @@ function DetailsPage() {
     <div>
       <Header params={params} />
       <DetailsPageStyle>
-        <h1>Detalhes</h1>
+        <h1>Details</h1>
         <DetailCard />
       </DetailsPageStyle>
     </div>

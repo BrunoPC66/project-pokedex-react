@@ -19,7 +19,7 @@ function PokedexPage() {
     <div>
       <Header />
       <PokedexPageStyle>
-        <h1>Pokedex</h1>
+        <h1>Pokédex</h1>
         <PokedexCard />
       </PokedexPageStyle>
     </div>

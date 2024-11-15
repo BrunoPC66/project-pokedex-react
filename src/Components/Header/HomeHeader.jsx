@@ -7,8 +7,13 @@ const HomeHeader = () => {
     const navigate = useNavigate()
 
     const {
-        goToPokedexPage
+        goToPokedexPage,
+        goToHomePage
     } = context
+
+    const onHomePageHandler = async () => {
+        await goToHomePage(navigate)
+    }
 
     const onPokedexPageHandler = async () => {
         await goToPokedexPage(navigate)
@@ -16,8 +21,7 @@ const HomeHeader = () => {
 
     return (
         <div className="header-container" id="home-header">
-            <p></p>
-            <a href="/" className="pokemon-logo" ><img src={require("../../assets/pokemon-logo.png")} alt="Pokémon™" className="pokemon-logo" /></a>
+            <img className="pokemon-logo" src={require("../../assets/pokemon-logo.png")} alt="Pokémon™" onClick={onHomePageHandler}/>
             <button className="to-pokedex-page" onClick={onPokedexPageHandler}>Pokédex</button>
         </div>
     )

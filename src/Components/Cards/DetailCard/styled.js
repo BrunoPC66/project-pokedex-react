@@ -12,7 +12,6 @@ const DetailCardStyle = styled.div`
 
 ul {
     margin-top: 15px;
-    overflow: hidden;
 }
 
 li {
@@ -107,7 +106,6 @@ li {
 
 .base-stats-block li[data-value] {
     display: flex;
-    /* justify-content: right; */
     justify-content: space-between;
     width: 100%;
     height: 26px;
@@ -117,13 +115,6 @@ li {
     background-color: mistyrose;
     --bar: attr(data-value);
 }
-
-/* .base-stats-block li::before {
-    content: var(--bar);
-    order: 1;
-    width: calc(var(--bar) *1%);
-    background-color: hsl(calc(var(--bar) *1.2), 80%, 50%);
-} */
 
 .total-base-stats {
     margin-top: 20px;
@@ -194,6 +185,7 @@ li {
     justify-self: center;
     width: 100%;
     grid-area: 3 / 2 / 21 / 21;
+    overflow: auto;
 }
 `
 

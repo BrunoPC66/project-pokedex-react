@@ -49,15 +49,15 @@ const HomeCard = () => {
                                 }
                             </section>
                             <section className='detail-page-button-container'>
-                                <button className='detail-page-button' onClick={() => onDetailsPageHandler(poke)}>Detalhes</button>
+                                <button className='detail-page-button' onClick={() => onDetailsPageHandler(poke)}>Details</button>
                             </section>
                             <section className='catch-release'>
                             {/* An alternative way to make a normal if inside the JSX return */}
                                 {(() => {
                                     if (intoPokedex.find(pokemon => pokemon.name === poke.name)) {
-                                        return <button className="card-button" id="card-catched" onClick={() => catchButton(poke)}>Capturado</button>
+                                        return <button className="card-button" id="card-catched">Catched</button>
                                     } else {
-                                        return <button className="card-button" id="card-catch" onClick={() => catchButton(poke)}>Capturar!</button>
+                                        return <button className="card-button" id="card-catch" onClick={() => catchButton(poke)}>Catch!</button>
                                     }
                                 })()}
                             </section>

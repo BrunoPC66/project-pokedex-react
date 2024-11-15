@@ -73,7 +73,7 @@ const DetailCard = () => {
                         )
                     } else {
                         return (
-                            <p>Pokémon não encontrado</p>
+                            <p>Pokémon not found</p>
                         )
                     }
                 })
