@@ -34,7 +34,7 @@ height: 25vh;
     margin-top: 40px;
     width: 110px;
     height: 37px;
-    border-radius: 100px 8px 8px 100px;
+    border-radius: 100px 100px 100px 100px;
     border: 1px solid black;
 }
 
@@ -42,7 +42,7 @@ height: 25vh;
     padding: 6px 15px 6px 15px;
     text-align: center;
     border: 1px solid black;
-    background-color: lightblue;
+    background-color: mistyrose;
     border-radius: 8px;
     font-weight: 500;
 }
@@ -53,7 +53,7 @@ height: 25vh;
     margin-top: 40px;
     width: 110px;
     height: 37px;
-    border-radius: 8px 100px 100px 8px;
+    border-radius: 100px 100px 100px 100px;
     margin-right: 20px;
 }
 
