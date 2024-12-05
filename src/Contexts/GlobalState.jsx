@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { GlobalContext } from "./GlobalContext";
-import * as Coordinator from "../Router/Coordinator"
-import { fetchPokemon } from "../Requisitions/Requisitions";
+import * as Coordinator from "../Router/Coordinator";
+import { fetchPokemon } from "../Requisitions/PokeRequisition";
+import { fetchPokeEvo } from "../Requisitions/EvoRequisition";
 
 
 function GlobalState(props) {
@@ -25,6 +26,7 @@ function GlobalState(props) {
     const [intoPokedex, setIntoPokedex] = useState(pokedexStorage);
     const [thisPokeName, setThisPokeName] = useState('')
     const [pokemonObject, setPokemonObject] = useState([])
+    const [params, setParams] = useState('')
 
     const {
         goToHomePage,
@@ -32,17 +34,16 @@ function GlobalState(props) {
         goToDetailsPage
     } = Coordinator
 
-    const catchButton = (pokemon) => {
-        const exist = intoPokedex.find(poke => poke.name === pokemon.name)
+    const catchButton = (poke) => {
+        const exist = intoPokedex.find(thisPoke => thisPoke.name === poke.name)
+        
         if (!exist) {
-            setIntoPokedex([...intoPokedex, pokemon])
-        } else {
-            return intoPokedex
+            setIntoPokedex([...intoPokedex, poke])
         }
     }
 
-    const releaseButton = (pokemon) => {
-        const removePokemon = intoPokedex.filter(poke => poke.name !== pokemon.name)
+    const releaseButton = (poke) => {
+        const removePokemon = intoPokedex.filter(thisPoke => thisPoke.name !== poke.name)
 
         setIntoPokedex(removePokemon)
     }
@@ -66,13 +67,18 @@ function GlobalState(props) {
         setIntoPokedex: setIntoPokedex,
         pokemonObject: pokemonObject,
         setPokemonObject: setPokemonObject,
+        params,
+        setParams,
         fetchPokemon: fetchPokemon,
+        fetchPokeEvo: fetchPokeEvo,
         goToHomePage: goToHomePage,
         goToPokedexPage: goToPokedexPage,
         goToDetailsPage: goToDetailsPage,
         catchButton: catchButton,
         releaseButton: releaseButton
     };
+
+    // console.log(intoPokedex);
 
     return (
         <GlobalContext.Provider value={context}>
