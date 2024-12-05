@@ -2,23 +2,48 @@ import { useContext } from "react";
 import { GlobalContext } from "../../../Contexts/GlobalContext";
 import DetailCardStyle from "./styled";
 import { CardLogic } from "../logic";
-
+import { useNavigate } from "react-router-dom";
 
 const DetailCard = () => {
     const context = useContext(GlobalContext)
+    const navigate = useNavigate()
 
     const {
         page,
         pokemonList,
+        intoPokedex,
+        setIntoPokedex,
         thisPokeName,
         pokemonObject,
         setPokemonObject,
+        fetchPokeEvo,
+        goToDetailsPage,
+        releaseButton
     } = context
 
-    const existPoke = [pokemonList.find(thisPoke => thisPoke.name === thisPokeName)]
+    let existPoke = []
+    let updatedCards = []
+    
+    const evolveButton = async (poke) => {
+        const evoName = await fetchPokeEvo(poke.name)
+        existPoke = [pokemonList.find(thisPoke => thisPoke.name === evoName) || existPoke[0]]  
+        
+        const existEvoIntoPokedex = intoPokedex.find(thisPoke => thisPoke.name === evoName)
+        
+        if(!existEvoIntoPokedex) {
+            releaseButton(poke)
+            updatedCards = CardLogic(existPoke, pokemonObject, setPokemonObject)
+            setIntoPokedex(prev => [...prev, updatedCards[0]])
+        } else if(evoName !== poke.name) {
+            releaseButton(poke)
+        };
 
-    const updatedCards = CardLogic(existPoke, pokemonObject, setPokemonObject)
+        goToDetailsPage(navigate, evoName)
+    };
 
+    existPoke = [pokemonList.find(thisPoke => thisPoke.name === thisPokeName)]
+    updatedCards = CardLogic(existPoke, pokemonObject, setPokemonObject)
+    
     if (updatedCards[0]) {
         return (
             <DetailCardStyle>
@@ -67,6 +92,14 @@ const DetailCard = () => {
                                                 <li key={i}>{move.name}</li>
                                             ))}
                                         </ul>
+                                    </section>
+                                    <section className="buttons-block">
+                                        {(
+                                            intoPokedex.find(pokedexPoke => pokedexPoke.name === poke.name) ?
+                                            <button className="evolve-button" onClick={() => evolveButton(poke)}>Evolve!</button>
+                                                :
+                                            null
+                                        )}
                                     </section>
                                 </div>
                             </div>

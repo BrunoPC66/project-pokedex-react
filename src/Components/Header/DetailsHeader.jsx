@@ -32,13 +32,11 @@ const DetailsHeader = (props) => {
 
     const releaseFromHeader = () => {
         const getPoke = pokemonObject.find(poke => poke.name === params)
-        console.log(params);
         return getPoke ?
             releaseButton(getPoke)
             :
             pokemonObject
     }
-    console.log(pokemonObject);
 
     return (
         <div className="header-container" id="details-header">

@@ -34,7 +34,8 @@ export const CardLogic = (toMap, state, setState) => {
                 backgroundColor: cardBackgroundColor,
                 baseStats: baseStats,
                 totalBaseStats: totalBaseStats,
-                moves: moves.slice(0, 7)
+                moves: moves.slice(0, 7),
+                fullyEvolved: false
             }
 
             return pokemonObj

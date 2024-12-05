@@ -187,6 +187,21 @@ li {
     grid-area: 3 / 2 / 21 / 21;
     overflow: auto;
 }
+
+.buttons-block {
+    grid-area: 22 / 38 / 25 / 49;
+    display: flex;
+    justify-content: center;
+}
+
+.evolve-button {
+    font-weight: 100px;
+    font-size: large;
+    width: 80px;
+    background: linear-gradient(90deg, red, yellow, red);
+    background-size: 200%;
+    border-radius: 12px;
+}
 `
 
 export default DetailCardStyle;
